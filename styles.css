@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;700&display=swap');
+
 :root {
     --cyberpunk-yellow: #fcee0a;
     --cyberpunk-blue: #00ffff;
@@ -191,25 +193,51 @@ h2 {
 }
 
 .claim-button {
-    background-color: var(--cyberpunk-yellow);
-    color: #000;
-    border: none;
+    font-family: 'Chakra Petch', sans-serif;
+    background-color: transparent;
+    color: var(--cyberpunk-yellow);
+    border: 2px solid var(--cyberpunk-yellow);
     border-radius: 2px;
     padding: 20px 60px;
     font-size: 18px;
     font-weight: bold;
     cursor: pointer;
     text-transform: uppercase;
-    transition: all 0.3s ease;
+    transition: all 0.3s ease-in-out;
     letter-spacing: 1px;
     margin-top: 30px;
     display: block;
-    opacity: 1;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 10px var(--cyberpunk-yellow), 0 0 40px rgba(252, 238, 10, 0.2);
+}
+
+.claim-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(252, 238, 10, 0.2);
+    transform: skewX(-30deg);
+    transition: 0.5s;
+}
+
+.claim-button:hover::before {
+    left: 100%;
 }
 
 .claim-button:hover {
-    background-color: #fff;
+    color: #000;
+    background: var(--cyberpunk-yellow);
+    box-shadow: 0 0 20px var(--cyberpunk-yellow), 0 0 60px rgba(252, 238, 10, 0.5);
     transform: translateY(-2px);
+}
+
+.claim-button:active {
+    box-shadow: 0 0 5px var(--cyberpunk-yellow), 0 0 20px rgba(252, 238, 10, 0.8);
+    transform: translateY(0);
 }
 
 footer {
@@ -475,6 +503,11 @@ footer {
         font-size: 16px;
         width: 90%;
         max-width: 300px;
+        box-shadow: 0 0 8px var(--cyberpunk-yellow), 0 0 30px rgba(252, 238, 10, 0.2);
+    }
+
+    .claim-button:hover {
+        box-shadow: 0 0 15px var(--cyberpunk-yellow), 0 0 45px rgba(252, 238, 10, 0.4);
     }
 
     .partners {
@@ -558,6 +591,11 @@ footer {
     .claim-button {
         padding: 12px 30px;
         font-size: 14px;
+        box-shadow: 0 0 6px var(--cyberpunk-yellow), 0 0 25px rgba(252, 238, 10, 0.15);
+    }
+
+    .claim-button:hover {
+        box-shadow: 0 0 12px var(--cyberpunk-yellow), 0 0 35px rgba(252, 238, 10, 0.3);
     }
 
     .partners img {
