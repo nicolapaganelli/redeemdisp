@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyberpunk Redeem</title>
+    <link rel="stylesheet" href="./styles.css">
+    <style>
+        :root {
+            --cyberpunk-yellow: #fcee0a;
+            --cyberpunk-blue: #00ffff;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: #000;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .top-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+        }
+
+        .language-select {
+            color: #00ffff;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .language-select span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .language-select ul {
+            display: none;
+            position: absolute;
+            background: #111;
+            padding: 10px 0;
+            border-radius: 4px;
+            list-style: none;
+            margin: 0;
+        }
+
+        .language-select:hover ul {
+            display: block;
+        }
+
+        .language-select ul li a {
+            color: #fff;
+            text-decoration: none;
+            padding: 8px 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            white-space: nowrap;
+        }
+
+        .language-select ul li a:hover {
+            background: #222;
+            color: var(--cyberpunk-blue);
+        }
+
+        .buy-now {
+            color: var(--cyberpunk-yellow);
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .game-logo {
+            margin-bottom: 0;
+        }
+
+        .game-logo img {
+            max-width: 300px;
+            height: auto;
+        }
+
+        h1 {
+            font-size: 36px;
+            margin: 0;
+            color: var(--cyberpunk-blue);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        h2 {
+            font-size: 64px;
+            margin: 20px 0;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            line-height: 1.2;
+        }
+
+        .description {
+            color: #999;
+            font-size: 18px;
+            max-width: 600px;
+            margin: 30px auto;
+            line-height: 1.5;
+        }
+
+        .code-input {
+            background: transparent;
+            border: 2px solid #333;
+            border-radius: 4px;
+            color: #fff;
+            font-size: 24px;
+            padding: 15px 20px;
+            width: 500px;
+            text-align: center;
+            letter-spacing: 2px;
+            transition: border-color 0.3s ease;
+        }
+
+        .code-input:focus {
+            border-color: var(--cyberpunk-blue);
+            outline: none;
+        }
+
+        .code-input::placeholder {
+            color: #666;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            background: #111;
+        }
+
+        .find-us {
+            color: #999;
+            text-transform: uppercase;
+            font-size: 14px;
+            margin: 30px 0;
+        }
+
+        .partners {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 60px;
+            margin: 40px 0;
+        }
+
+        .partners img {
+            height: 40px;
+            width: auto;
+            filter: brightness(0) invert(1);
+            opacity: 0.8;
+            transition: opacity 0.2s ease;
+        }
+
+        .partners img:hover {
+            opacity: 1;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 30px 0;
+        }
+
+        .footer-links a {
+            color: var(--cyberpunk-blue);
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .copyright {
+            color: #666;
+            font-size: 12px;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .copyright img {
+            height: 50px;
+            width: auto;
+            margin: 30px 0;
+            filter: brightness(0) invert(1);
+        }
+
+        .code-entry {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .claim-button {
+            background-color: var(--cyberpunk-yellow);
+            color: #000;
+            border: none;
+            border-radius: 2px;
+            padding: 20px 60px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            letter-spacing: 1px;
+            margin-top: 30px;
+            display: block;
+            opacity: 1;
+        }
+
+        .claim-button:hover {
+            background-color: #fff;
+            transform: translateY(-2px);
+        }
+
+        .social-icons,
+        .social-icons img,
+        .social-icons a:hover img {
+            display: none;
+        }
+
+        .footer-brands {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .footer-brands img {
+            height: 30px;
+            width: auto;
+        }
+
+        .language-globe {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* Update partners section to include ESRB rating */
+        .partners img:last-child {
+            height: 60px; /* Make ESRB rating larger */
+        }
+
+        .collab-logos {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 60px;
+            margin: 40px auto 80px;
+            width: 100%;
+            max-width: 1200px;
+            padding: 0 20px;
+        }
+
+        .game-logo img {
+            width: 400px;
+            height: auto;
+        }
+
+        .displate-logo img {
+            width: 180px;
+            height: auto;
+            object-fit: contain;
+        }
+
+        .collab-x {
+            font-size: 48px;
+            color: #fff;
+            font-weight: 200;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Cyberpunk 2077</h1>
+        <h2>Redeem Your Code</h2>
+        <div class="redeem-box">
+            <input type="text" class="code-input" placeholder="00000000-0000-0000-0000">
+            <button class="claim-button">Claim</button>
+        </div>
+        <a href="#" class="change-account">Change Your Account</a>
+    </div>
+
+    <footer>
+        <div class="find-us">
+            FIND US ON
+        </div>
+        
+        <div class="partners">
+            <img loading="lazy" src="https://www.cyberpunk.net/build/images/footer/partners/nvidia-5a0ab065.svg" alt="NVIDIA">
+            <img loading="lazy" src="https://www.cyberpunk.net/build/images/footer/partners/alienware-3d98dd93.svg" alt="Alienware">
+            <img loading="lazy" src="https://www.cyberpunk.net/build/images/footer/partners/amd-a823d277.svg" alt="AMD">
+        </div>
+
+        <div class="footer-links">
+            <a href="#">Terms of Use & Privacy Policy</a>
+            <a href="#">Careers</a>
+            <a href="#">User agreement</a>
+            <a href="#">Fan Content Guidelines</a>
+            <a href="#">Cookie Declaration</a>
+            <a href="#">REDmod</a>
+            <a href="#" class="language-globe">🌐 English</a>
+        </div>
+
+        <div class="copyright">
+            <img loading="lazy" src="https://www.cyberpunk.net/build/images/CDProjektRed-White-e4ac7847.svg" alt="CD Projekt Red">
+            <p>© 2025 CD PROJEKT S.A. All rights reserved. CD PROJEKT, the CD PROJEKT logo, Cyberpunk, Cyberpunk 2077 and the Cyberpunk 2077 logo are trademarks and/or registered trademarks of CD PROJEKT S.A. in the US and/or other countries.</p>
+        </div>
+
+        <div class="footer-brands">
+            <a href="https://thewitcher.com"><img src="https://www.cyberpunk.net/build/images/common/logo-the-witcher@1x-f1b5e91c.png" alt="The Witcher"></a>
+            <a href="https://playgwent.com"><img src="https://www.cyberpunk.net/build/images/common/logo-gwent@1x-f1b5e91c.png" alt="Gwent"></a>
+            <a href="https://gear.cdprojektred.com"><img src="https://www.cyberpunk.net/build/images/common/logo-cdpr-store@1x-f1b5e91c.png" alt="CD PROJEKT RED STORE"></a>
+        </div>
+    </footer>
+</body>
+</html>
