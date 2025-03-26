@@ -3,8 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cyberpunk 2077 - Redeem Your Code</title>
+    <title>Cyberpunk 2077 x Displate - Redeem</title>
     <link rel="stylesheet" href="styles.css">
+    <!-- Add iOS specific meta tags for AR -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 </head>
 <body>
     <nav class="top-nav">
@@ -26,7 +29,7 @@
             </div>
             <div class="collab-x">×</div>
             <div class="displate-logo">
-                <img src="assets/logos/FI-removebg-preview.png" alt="Displate">
+                <img src="assets/logos/FI.jpg" alt="Displate">
             </div>
         </div>
         
@@ -34,16 +37,34 @@
         <h2>REDEEM YOUR CODE</h2>
         
         <p class="description">
-            You have a unique code for additional items in Cyberpunk 2077 you can redeem it on this page
+            If you received a code for additional items in Cyberpunk 2077 you can redeem it on this page
         </p>
 
         <div class="code-entry">
-            <input type="text" class="code-input" value="DN6JGM5F-JHMQ-INO4-O581-0VWB2XQSX3">
-            <button class="claim-button">REDEEM YOUR CODE</button>
+            <input type="text" class="code-input" value="00000000-0000-0000-0000-000000000000">
+            <button id="redeemButton" class="claim-button">REDEEM YOUR CODE</button>
+        </div>
+
+        <!-- AR Experience Container -->
+        <div id="ar-container" class="ar-container" style="display: none;">
+            <div class="ar-content">
+                <h3>🎉 Congratulations!</h3>
+                <p>You've unlocked Johnny Silverhand's Porsche 911!</p>
+                <a id="ar-link" rel="ar" href="assets/Porsche_911_turbo_930_Johnny_Silverhands.usdz">
+                    <div class="ar-preview">
+                        <img src="assets/logos/Cyberpunk_logo.svg" alt="Preview" class="preview-image">
+                        <div class="ar-badge">
+                            <img src="https://developer.apple.com/assets/elements/badges/arkit.svg" alt="AR Quick Look">
+                            <span>View in AR</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
         </div>
     </div>
 
     <footer>
+        <div class="find-us">FIND US ON</div>
         
         <div class="partners">
             <img loading="lazy" src="https://www.cyberpunk.net/build/images/footer/partners/nvidia-5a0ab065.svg" alt="NVIDIA">
@@ -58,14 +79,32 @@
             <a href="#">Fan Content Guidelines</a>
             <a href="#">Cookie Declaration</a>
             <a href="#">REDmod</a>
-            <a href="#" class="language-globe">🌐 English</a>
         </div>
 
         <div class="copyright">
             <img loading="lazy" src="https://www.cyberpunk.net/build/images/CDProjektRed-White-e4ac7847.svg" alt="CD Projekt Red">
             <p>© 2025 CD PROJEKT S.A. All rights reserved. CD PROJEKT, the CD PROJEKT logo, Cyberpunk, Cyberpunk 2077 and the Cyberpunk 2077 logo are trademarks and/or registered trademarks of CD PROJEKT S.A. in the US and/or other countries.</p>
         </div>
-
     </footer>
+
+    <script>
+        document.getElementById('redeemButton').addEventListener('click', function() {
+            // Check if it's an iOS device
+            const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+            
+            if (isIOS) {
+                // Show AR container
+                document.getElementById('ar-container').style.display = 'flex';
+                
+                // Scroll to AR container
+                document.getElementById('ar-container').scrollIntoView({ 
+                    behavior: 'smooth',
+                    block: 'center'
+                });
+            } else {
+                alert('This AR experience is only available on iOS devices. Please open this page on an iPhone or iPad.');
+            }
+        });
+    </script>
 </body>
 </html>
