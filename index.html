@@ -10,6 +10,10 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 </head>
 <body>
+    <div class="background-container">
+        <img src="assets/images/hero-bg.png" alt="" class="background-image">
+    </div>
+
     <nav class="top-nav">
         <div class="language-select">
             <span>🇺🇸</span>
@@ -46,18 +50,21 @@
         </div>
 
         <!-- AR Experience Container -->
-        <div id="ar-container" class="ar-container" style="display: none;">
+        <div id="ar-container" class="ar-container">
             <div class="ar-content">
                 <h3>🎉 Congratulations!</h3>
                 <p>You've unlocked Johnny Silverhand's Porsche 911!</p>
                 <div class="ar-preview-container">
-                    <img src="assets/logos/Cyberpunk_logo.svg" alt="Cyberpunk 2077" class="preview-logo">
+                    <img src="assets/logos/Porsche-removebg-preview.png" alt="Johnny Silverhand's Porsche 911" class="preview-logo">
                     <a id="ar-link" rel="ar" href="assets/Porsche_911_turbo_930_Johnny_Silverhands.usdz">
                         <div class="ar-button">
-                            <img src="assets/icons/ar-quick-look.png" alt="AR" class="ar-icon">
+                            <img src="ar-icon.svg" alt="AR" class="ar-icon">
                             <span>View in AR</span>
                         </div>
                     </a>
+                    <div id="device-message" class="device-message">
+                        This AR experience is only available on iOS devices. Please open this page on an iPhone or iPad.
+                    </div>
                 </div>
             </div>
         </div>
@@ -87,24 +94,6 @@
         </div>
     </footer>
 
-    <script>
-        document.getElementById('redeemButton').addEventListener('click', function() {
-            // Check if it's an iOS device
-            const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-            
-            if (isIOS) {
-                // Show AR container
-                document.getElementById('ar-container').style.display = 'flex';
-                
-                // Scroll to AR container
-                document.getElementById('ar-container').scrollIntoView({ 
-                    behavior: 'smooth',
-                    block: 'center'
-                });
-            } else {
-                alert('This AR experience is only available on iOS devices. Please open this page on an iPhone or iPad.');
-            }
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
