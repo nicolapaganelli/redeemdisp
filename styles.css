@@ -96,7 +96,7 @@ body {
 
 .content {
     position: relative;
-    z-index: 2;
+    z-index: 1;
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -214,7 +214,7 @@ h2 {
 
 footer {
     position: relative;
-    z-index: 2;
+    z-index: 1;
     text-align: center;
     padding: 40px 20px;
     background: #111;
@@ -270,17 +270,17 @@ footer {
 }
 
 .ar-container {
-    display: none;
-    justify-content: center;
-    align-items: center;
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.9);
     z-index: 1000;
-    padding: 20px;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.85);
+    overflow-y: auto;
 }
 
 .ar-content {
@@ -292,6 +292,8 @@ footer {
     max-width: 500px;
     width: 100%;
     position: relative;
+    z-index: 1001;
+    margin: 40px 20px;
 }
 
 .ar-content h3 {
