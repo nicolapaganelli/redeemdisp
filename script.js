@@ -1,5 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const arContainer = document.getElementById('ar-container');
+    const arContainer = document.querySelector('.ar-container');
+    const videoContainer = document.querySelector('.video-container');
+    const video = document.querySelector('.intro-video');
+    const videoClose = document.querySelector('.video-close');
+    const arContent = document.querySelector('.ar-content');
+    const claimButton = document.querySelector('.claim-button');
     const arLink = document.getElementById('ar-link');
     const deviceMessage = document.getElementById('device-message');
     const redeemButton = document.getElementById('redeemButton');
@@ -10,6 +15,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Check if device supports AR Quick Look
     const isIOSWithAR = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+
+    function showVideo() {
+        arContainer.style.display = 'flex';
+        videoContainer.style.display = 'flex';
+        video.play();
+    }
+
+    function hideVideo() {
+        videoContainer.style.display = 'none';
+        arContent.style.display = 'block';
+        video.pause();
+        video.currentTime = 0;
+    }
+
+    function closeAR() {
+        arContainer.style.display = 'none';
+        videoContainer.style.display = 'none';
+        video.pause();
+        video.currentTime = 0;
+    }
 
     function showARContainer() {
         arContainer.style.display = 'flex';
@@ -33,6 +58,19 @@ document.addEventListener('DOMContentLoaded', () => {
     // Event Listeners
     redeemButton.addEventListener('click', showARContainer);
 
+    claimButton.addEventListener('click', function(e) {
+        e.preventDefault();
+        showVideo();
+    });
+
+    videoClose.addEventListener('click', function() {
+        hideVideo();
+    });
+
+    video.addEventListener('ended', function() {
+        hideVideo();
+    });
+
     // Handle AR button click
     if (!isIOSWithAR) {
         arLink.addEventListener('click', (e) => {
@@ -50,14 +88,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // Close AR container when clicking outside content
     arContainer.addEventListener('click', (e) => {
         if (e.target === arContainer) {
-            hideARContainer();
+            closeAR();
         }
     });
 
     // Close on escape key
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && arContainer.style.display === 'flex') {
-            hideARContainer();
+            closeAR();
         }
     });
 
