@@ -56,9 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Event Listeners
-    redeemButton.addEventListener('click', showARContainer);
-
-    claimButton.addEventListener('click', function(e) {
+    redeemButton.addEventListener('click', function(e) {
         e.preventDefault();
         showVideo();
     });
